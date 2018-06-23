@@ -1,7 +1,14 @@
 <mat-toolbar class="header" fxLayout="row" fxLayoutAlign="center center">Loyts</mat-toolbar>
-<mat-tab-group>
-  <mat-tab label="Explore"><app-explore></app-explore></mat-tab>
-  <mat-tab label="Messanges"><app-messanges></app-messanges></mat-tab>
-  <mat-tab label="Chat Room"><app-chat-room></app-chat-room></mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar mat-stretch-tabs>
+  <a
+    mat-tab-link
+    *ngFor="let component of components"
+    (click)="activeComponent = component.title"
+    [active]="activeComponent == component.title"
+    routerLink={{component.routerLink}}
+  >
+    {{ component.title }}
+  </a>
+</nav>
+  
 <router-outlet></router-outlet>

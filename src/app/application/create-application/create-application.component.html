@@ -1,0 +1,20 @@
+<mat-vertical-stepper linear #stepper>
+  <mat-step label="Record Application">
+    <app-record-voice></app-record-voice>
+    <button mat-raised-button color="primary" matStepperNext>Next</button>
+  </mat-step>
+  <mat-step label="Choose the Language">
+    <app-input-language></app-input-language>
+    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+    <button mat-raised-button color="primary" matStepperNext>Next</button>
+  </mat-step>
+  <mat-step label="Choose Tags">
+    <app-input-tags></app-input-tags>
+    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+    <button mat-raised-button color="primary" matStepperNext>Next</button>
+  </mat-step>
+  <mat-step label="Publish">
+    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+    <button mat-raised-button color="primary" (click)="stepper.reset()">Publish</button>
+  </mat-step>
+</mat-vertical-stepper>
