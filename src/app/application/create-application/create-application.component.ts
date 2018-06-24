@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Application } from '../../models/application';
 
 @Component({
   selector: 'app-create-application',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-application.component.scss']
 })
 export class CreateApplicationComponent implements OnInit {
-
-  constructor() { }
+  application: Application;
+  constructor() {
+    this.application = new Application();
+  }
 
   ngOnInit() {
   }
 
+  changeLanguage(language: string) {
+    this.application.language = language;
+  }
+
+  tagsChanged(tags: Array<string>) {
+    this.application.tags = tags;
+  }
 }

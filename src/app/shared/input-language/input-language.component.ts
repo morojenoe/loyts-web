@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import { LocalizedCountryNames, langs, getNames, registerLocale } from '@cospired/i18n-iso-languages';
+
 
 class Language {
   code: string;
@@ -13,6 +15,8 @@ class Language {
 })
 export class InputLanguageComponent implements OnInit {
   langs: Array<Language>;
+  @Output() changeLanguage = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
@@ -22,5 +26,9 @@ export class InputLanguageComponent implements OnInit {
       code: lang,
       name: languages[lang]
     }));
+  }
+
+  selectionChanged(event: MatSelectChange) {
+    this.changeLanguage.emit(event.value.toLowerCase());
   }
 }

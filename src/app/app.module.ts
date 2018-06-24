@@ -9,6 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +49,10 @@ import { InputLanguageComponent } from './shared/input-language/input-language.c
     MatStepperModule,
     MatIconModule,
     MatSelectModule,
+    MatChipsModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
