@@ -1,3 +1,7 @@
-<p>
-  input-language works!
-</p>
+<mat-form-field>
+  <mat-select placeholder="Select the language you've spoken">
+    <mat-option *ngFor="let lang of langs" value="lang.code">
+      {{ lang.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

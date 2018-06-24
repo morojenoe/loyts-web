@@ -8,6 +8,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +43,7 @@ import { InputLanguageComponent } from './shared/input-language/input-language.c
     MatButtonModule,
     MatStepperModule,
     MatIconModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
