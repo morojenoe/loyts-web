@@ -1,3 +1,33 @@
-<p>
-  record-voice works!
-</p>
+<ng-container [ngSwitch]="state">
+  <button
+    *ngSwitchCase="RecordingEnum.NotStarted"
+    mat-raised-button
+    (click)="startRecording()"
+  >
+    <mat-icon>mic</mat-icon>
+    Click To Record the Application
+  </button>
+
+  <ng-container *ngSwitchCase="RecordingEnum.Started">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <mat-icon class="record-voice-icon">record_voice_over</mat-icon>
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            {{time}}s / {{maxDuration}}s
+          </div>
+        </div>
+      </div>
+      
+      <button mat-raised-button color="primary" (click)="finishRecording()">Stop Recording</button>
+    </div>
+  </ng-container>
+  
+  <ng-container *ngSwitchCase="RecordingEnum.Finished">
+    <mat-icon>play_circle_outline</mat-icon>
+  </ng-container>
+
+</ng-container>
+
+

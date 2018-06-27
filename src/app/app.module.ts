@@ -13,7 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -53,6 +53,7 @@ import { InputLanguageComponent } from './shared/input-language/input-language.c
     MatInputModule,
     MatSnackBarModule,
     MatFormFieldModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

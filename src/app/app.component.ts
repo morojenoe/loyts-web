@@ -12,13 +12,11 @@ class Navigation {
 })
 export class AppComponent {
   components: Navigation[];
-  activeComponent: string;
   constructor() {
     this.components = [
       { title: 'Explore', routerLink: '/explore' },
       { title: 'Application', routerLink: '/application' },
       { title: 'Chat Room', routerLink: '/chat-room' },
     ];
-    this.activeComponent = this.components[0].title;
   }
 }

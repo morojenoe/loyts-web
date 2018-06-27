@@ -1,7 +1,11 @@
 <mat-vertical-stepper linear #stepper>
-  <mat-step label="Record Application">
-    <app-record-voice></app-record-voice>
-    <button mat-raised-button color="primary" matStepperNext>Next</button>
+  <mat-step label="Record Application" [completed]="application.audio">
+    <app-record-voice (recordedVoice)="recordedVoice($event)"></app-record-voice>
+    <div class="stepper-buttons" *ngIf="application.audio">
+      <button mat-raised-button color="primary" matStepperNext>
+        Next
+      </button>
+    </div>
   </mat-step>
   <mat-step label="Choose the Language" [completed]="application.language">
     <app-input-language (changeLanguage)="changeLanguage($event)"></app-input-language>

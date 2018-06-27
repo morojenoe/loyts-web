@@ -22,4 +22,8 @@ export class CreateApplicationComponent implements OnInit {
   tagsChanged(tags: Array<string>) {
     this.application.tags = tags;
   }
+
+  recordedVoice(audio: any) {
+    this.application.audio = audio;
+  }
 }
