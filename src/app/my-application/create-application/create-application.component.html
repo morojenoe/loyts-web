@@ -29,6 +29,7 @@
     </div>
   </mat-step>
   <mat-step label="Publish">
+    <app-application [application]="application"></app-application>
     <div class="stepper-buttons" fxLayoutGap="10px">
       <button mat-raised-button color="warn" matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" (click)="stepper.reset()">Publish</button>

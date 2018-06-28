@@ -1,0 +1,28 @@
+<ng-container [ngSwitch]="state">
+  <button
+    *ngSwitchCase="State.NotStarted"
+    mat-icon-button
+    (click)="play()"
+  >
+    <span class="icon">
+      <mat-icon inline>play_circle_outline</mat-icon>
+    </span>
+  </button>
+  <ng-container *ngSwitchCase="State.Playing">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <button mat-icon-button disableRipple (click)="stop()">
+          <div class="icon">
+            <mat-icon inline>stop</mat-icon>
+          </div>
+        </button>
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            {{time}}s / {{duration}}s
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

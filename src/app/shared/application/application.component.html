@@ -1,0 +1,10 @@
+<app-player></app-player>
+<mat-chip-list>
+  <mat-chip color="primary">{{ application.language }}</mat-chip>
+  <mat-chip
+    *ngFor="let tag of application.tags"
+    color="primary"
+  >
+    {{ tag }}
+  </mat-chip>
+</mat-chip-list>

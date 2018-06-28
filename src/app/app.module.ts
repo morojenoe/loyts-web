@@ -20,22 +20,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExploreComponent } from './explore/explore.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { ApplicationComponent } from './application/application.component';
-import { CreateApplicationComponent } from './application/create-application/create-application.component';
+import { MyApplicationComponent } from './my-application/my-application.component';
+import { CreateApplicationComponent } from './my-application/create-application/create-application.component';
 import { RecordVoiceComponent } from './shared/record-voice/record-voice.component';
 import { InputTagsComponent } from './shared/input-tags/input-tags.component';
 import { InputLanguageComponent } from './shared/input-language/input-language.component';
+import { PlayerComponent } from './shared/player/player.component';
+import { ApplicationComponent } from './shared/application/application.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExploreComponent,
     ChatRoomComponent,
-    ApplicationComponent,
+    MyApplicationComponent,
     CreateApplicationComponent,
     RecordVoiceComponent,
     InputTagsComponent,
     InputLanguageComponent,
+    PlayerComponent,
+    ApplicationComponent,
   ],
   imports: [
     BrowserModule,
