@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="state">
   <button
-    *ngSwitchCase="RecordingEnum.NotStarted"
+    *ngSwitchCase="State.NotStarted"
     mat-raised-button
     (click)="startRecording()"
   >
@@ -8,10 +8,12 @@
     Click To Record the Application
   </button>
 
-  <ng-container *ngSwitchCase="RecordingEnum.Started">
+  <ng-container *ngSwitchCase="State.Started">
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
-        <mat-icon class="record-voice-icon">record_voice_over</mat-icon>
+        <div class="icon">
+          <mat-icon inline>record_voice_over</mat-icon>
+        </div>
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
           <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
           <div fxLayout="row" fxLayoutAlign="center center">
@@ -24,10 +26,25 @@
     </div>
   </ng-container>
   
-  <ng-container *ngSwitchCase="RecordingEnum.Finished">
-    <mat-icon>play_circle_outline</mat-icon>
+  <ng-container *ngSwitchCase="State.Finished">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <button mat-icon-button (click)="playApplication()">
+        <span class="icon">
+          <mat-icon inline>play_circle_outline</mat-icon>
+        </span>
+      </button>
+      <button mat-raised-button (click)="startRecording()">
+        Rerecord Application
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="State.Playing">
+    <button mat-icon-button disableRipple (click)="stopPlayingApplication()">
+      <div class="icon">
+        <mat-icon inline>stop</mat-icon>
+      </div>
+    </button>
   </ng-container>
 
 </ng-container>
-
-

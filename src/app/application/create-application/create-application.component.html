@@ -10,7 +10,7 @@
   <mat-step label="Choose the Language" [completed]="application.language">
     <app-input-language (changeLanguage)="changeLanguage($event)"></app-input-language>
     <div class="stepper-buttons" fxLayoutGap="10px">
-      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button mat-raised-button color="warn" matStepperPrevious>Back</button>
       <button
         mat-raised-button
         color="primary"
@@ -24,13 +24,13 @@
   <mat-step label="Choose Tags">
     <app-input-tags (tagsChanged)="tagsChanged($event)"></app-input-tags>
     <div class="stepper-buttons" fxLayoutGap="10px">
-      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button mat-raised-button color="warn" matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" matStepperNext>Next</button>
     </div>
   </mat-step>
   <mat-step label="Publish">
     <div class="stepper-buttons" fxLayoutGap="10px">
-      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button mat-raised-button color="warn" matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" (click)="stepper.reset()">Publish</button>
     </div>
   </mat-step>

@@ -1,4 +1,5 @@
-.record-voice-icon {
-  width: 64px;
-  height: 64px;
+$icon-size: 48px;
+
+.icon {
+  font-size: $icon-size;
 }
