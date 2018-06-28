@@ -9,8 +9,8 @@
   </button>
 
   <ng-container *ngSwitchCase="State.Started">
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
         <div class="icon">
           <mat-icon inline>record_voice_over</mat-icon>
         </div>
@@ -40,11 +40,21 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="State.Playing">
-    <button mat-icon-button disableRipple (click)="stopPlayingApplication()">
-      <div class="icon">
-        <mat-icon inline>stop</mat-icon>
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <button mat-icon-button disableRipple (click)="stopPlayingApplication()">
+          <div class="icon">
+            <mat-icon inline>stop</mat-icon>
+          </div>
+        </button>
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            {{time}}s / {{maxDuration}}s
+          </div>
+        </div>
       </div>
-    </button>
+    </div>
   </ng-container>
 
 </ng-container>

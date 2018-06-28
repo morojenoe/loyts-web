@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-enum Recording {
+enum RecordingState {
   NotStarted,
   Started,
   Finished,
@@ -15,39 +15,44 @@ enum Recording {
   styleUrls: ['./record-voice.component.scss']
 })
 export class RecordVoiceComponent implements OnInit {
-  State = Recording;
+  State = RecordingState;
 
   @Input() maxDuration = 30;
   @Output() recordedVoice = new EventEmitter<any>();
+  state = this.State.NotStarted;
+  timer: Subscription;
   time: Number = null;
-  state = Recording.NotStarted;
-  recordingTimer: Subscription;
 
   ngOnInit() {
   }
 
-  startRecording() {
-    this.recordedVoice.emit(null);
-    this.state = Recording.Started;
-    const recordingTimer = timer(0, 1000).pipe(take(this.maxDuration + 1));
-    this.recordingTimer = recordingTimer.subscribe(
+  subscribeToTimer() {
+    this.timer = timer(0, 1000).pipe(take(this.maxDuration + 1)).subscribe(
       value => this.time = value,
       err => {},
       () => this.finishRecording()
     );
   }
 
+  startRecording() {
+    this.recordedVoice.emit(null);
+    this.state = this.State.Started;
+    this.subscribeToTimer();
+  }
+
   finishRecording() {
-    this.state = Recording.Finished;
-    this.recordingTimer.unsubscribe();
+    this.state = this.State.Finished;
+    this.timer.unsubscribe();
     this.recordedVoice.emit('asd');
   }
 
   playApplication() {
-    this.state = Recording.Playing;
+    this.state = this.State.Playing;
+    this.subscribeToTimer();
   }
 
   stopPlayingApplication() {
-    this.state = Recording.Finished;
+    this.state = this.State.Finished;
+    this.timer.unsubscribe();
   }
 }
