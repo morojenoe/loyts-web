@@ -1,14 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { timer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { PlayerState } from './player-state';
 
-enum PlayerState {
-  NotStarted,
-  Playing,
-  Finished,
-}
 
 @Component({
   selector: 'app-player',
@@ -22,7 +18,10 @@ export class PlayerComponent implements OnInit {
   timer: Subscription;
   time: Number = null;
 
+  @Output() changeState = new EventEmitter<PlayerState>();
+
   ngOnInit() {
+    this.changeState.emit(this.state);
   }
 
   subscribeToTimer() {
@@ -35,11 +34,13 @@ export class PlayerComponent implements OnInit {
 
   play() {
     this.state = this.State.Playing;
+    this.changeState.emit(this.state);
     this.subscribeToTimer();
   }
 
   stop() {
     this.state = this.State.NotStarted;
+    this.changeState.emit(this.state);
     this.timer.unsubscribe();
   }
 }

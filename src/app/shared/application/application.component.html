@@ -1,10 +1,12 @@
-<app-player></app-player>
-<mat-chip-list>
-  <mat-chip color="primary">{{ application.language }}</mat-chip>
-  <mat-chip
-    *ngFor="let tag of application.tags"
-    color="primary"
-  >
-    {{ tag }}
-  </mat-chip>
-</mat-chip-list>
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+  <app-player (changeState)="changePlayerState($event)"></app-player>
+  <mat-chip-list *ngIf="playerState != PlayerState.Playing">
+    <mat-chip color="primary">{{ application.language }}</mat-chip>
+    <mat-chip
+      *ngFor="let tag of application.tags"
+      color="primary"
+    >
+      {{ tag }}
+    </mat-chip>
+  </mat-chip-list>
+</div>
