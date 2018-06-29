@@ -9,13 +9,13 @@
     </span>
   </button>
   <ng-container *ngSwitchCase="State.Playing">
-    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <button mat-icon-button disableRipple (click)="stop()">
-          <div class="icon">
-            <mat-icon inline>stop</mat-icon>
-          </div>
-        </button>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <button mat-icon-button disableRipple (click)="stop()">
+        <div class="icon">
+          <mat-icon inline>stop</mat-icon>
+        </div>
+      </button>
+      <div fxFlex="grow">
         <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
           <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
           <div fxLayout="row" fxLayoutAlign="center center">

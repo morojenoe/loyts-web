@@ -1,35 +1,42 @@
 <ng-container [ngSwitch]="state">
-  <button
+  <div
     *ngSwitchCase="State.NotStarted"
-    mat-raised-button
-    (click)="startRecording()"
+    fxLayout="row"
   >
-    <mat-icon>mic</mat-icon>
-    Click To Record the Application
-  </button>
+    <button fxFlexFill mat-raised-button (click)="startRecording()">
+      <mat-icon>mic</mat-icon>
+      Click To Record the Application
+    </button>
+  </div>
 
   <ng-container *ngSwitchCase="State.Started">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <div class="icon">
-          <mat-icon inline>record_voice_over</mat-icon>
-        </div>
-        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-          <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
-          <div fxLayout="row" fxLayoutAlign="center center">
-            {{time}}s / {{maxDuration}}s
+      <div fxFlexFill>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <div class="icon">
+            <mat-icon inline>record_voice_over</mat-icon>
+          </div>
+          <div fxFlex="grow">
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+              <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                {{time}}s / {{maxDuration}}s
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
-      <button mat-raised-button color="primary" (click)="finishRecording()">Stop Recording</button>
+      <button fxFlexFill mat-raised-button color="primary" (click)="finishRecording()">Stop Recording</button>
     </div>
   </ng-container>
   
   <ng-container *ngSwitchCase="State.Finished">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-      <app-player></app-player>
-      <button mat-raised-button (click)="startRecording()">
+      <div fxFlexFill>
+        <app-player></app-player>
+      </div>
+      <button fxFlexFill mat-raised-button (click)="startRecording()">
         Rerecord Application
       </button>
     </div>
