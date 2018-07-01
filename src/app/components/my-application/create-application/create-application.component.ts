@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Application } from '../../models/application';
+import { Application } from '../../../models/application';
 
 @Component({
   selector: 'app-create-application',

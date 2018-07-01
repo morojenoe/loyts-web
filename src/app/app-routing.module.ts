@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ExploreComponent } from './explore/explore.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { MyApplicationComponent } from './my-application/my-application.component';
-import { CreateApplicationComponent } from './my-application/create-application/create-application.component';
+import { ExploreComponent } from './components/explore/explore.component';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
+import { MyApplicationComponent } from './components/my-application/my-application.component';
+import { CreateApplicationComponent } from './components/my-application/create-application/create-application.component';
 
 const routes: Routes = [
   { path: 'explore', component: ExploreComponent },

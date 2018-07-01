@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -14,14 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ExploreComponent } from './explore/explore.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { MyApplicationComponent } from './my-application/my-application.component';
-import { CreateApplicationComponent } from './my-application/create-application/create-application.component';
+import { ExploreComponent } from './components/explore/explore.component';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
+import { MyApplicationComponent } from './components/my-application/my-application.component';
+import { CreateApplicationComponent } from './components/my-application/create-application/create-application.component';
 import { RecordVoiceComponent } from './shared/record-voice/record-voice.component';
 import { InputTagsComponent } from './shared/input-tags/input-tags.component';
 import { InputLanguageComponent } from './shared/input-language/input-language.component';
@@ -45,6 +47,7 @@ import { ApplicationComponent } from './shared/application/application.component
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     MatToolbarModule,
     FlexLayoutModule,
     MatTabsModule,
@@ -58,6 +61,7 @@ import { ApplicationComponent } from './shared/application/application.component
     MatSnackBarModule,
     MatFormFieldModule,
     MatProgressBarModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
