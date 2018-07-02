@@ -2,27 +2,30 @@ import { Injectable } from '@angular/core';
 import { Application } from '../models/application';
 import { Observable, of } from 'rxjs';
 import { IApplicationService } from '../interfaces/i-application-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService implements IApplicationService {
-  constructor() { }
+  readonly applicationUrl = '/api/applications';
+  constructor(private http: HttpClient) { }
 
   getApplications(): Observable<Application[]> {
-    return of([
-      new Application(1, 'english', ['music', 'rock', 'alternative'], new Date(Date.now()), null),
-      new Application(2, 'english',
-                      ['sport', 'football', 'FIFA World Cup 2018', 'disappointment', 'prediction'],
-                      new Date(Date.now()), null),
-      new Application(3, 'english', ['hollywood walk of fame'], new Date(Date.now()), null),
-      new Application(4, 'chinese', ['culture', 'street food'], new Date(Date.now()), null),
-      new Application(5, 'french', ['paris', 'attraction', 'landmark'], new Date(Date.now()), null),
-      new Application(6, 'french', [], new Date(Date.now()), null),
-      new Application(7, 'german', [], new Date(Date.now()), null),
-      new Application(8, 'german', ['politics', 'election'], new Date(Date.now()), null),
-      new Application(9, 'chinese', ['tell me about shanghai'], new Date(Date.now()), null),
-      new Application(10, 'french', ['everything'], new Date(Date.now()), null),
-    ]);
+    return this.http.get<Application[]>(this.applicationUrl);
+  }
+
+  filterApplications(filterValue: string): Observable<Application[]> {
+    return this.http.get<Application[]>(this.applicationUrl).pipe(
+      map(applications =>
+        applications.filter(app => {
+          return (
+            app.tags.findIndex(tag => tag === filterValue) !== -1 ||
+            app.language === filterValue
+          );
+        })
+      )
+    );
   }
 }
