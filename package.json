@@ -25,6 +25,7 @@
     "@angular/router": "^6.0.3",
     "@cospired/i18n-iso-languages": "^1.0.2",
     "core-js": "^2.5.4",
+    "date-fns": "^2.0.0-alpha.11",
     "opus-recorder": "^4.1.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

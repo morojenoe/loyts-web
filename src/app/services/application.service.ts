@@ -28,4 +28,16 @@ export class ApplicationService implements IApplicationService {
       )
     );
   }
+
+  getApplicationProposalCount(applicationId: number): number {
+    return 1;
+  }
+
+  getCountApplicationProposals(applications: Application[]): number[] {
+    const countProposals = [];
+    for (let i = 0; i < applications.length; i += 1) {
+      countProposals.push(this.getApplicationProposalCount(applications[i].id));
+    }
+    return countProposals;
+  }
 }

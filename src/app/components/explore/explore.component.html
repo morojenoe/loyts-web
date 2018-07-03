@@ -8,29 +8,46 @@
       maxLength="50"
     >
     <mat-hint align="end">{{filterInput.value.length}} / 50</mat-hint>
+    <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 
-  <mat-divider fxFlexFill></mat-divider>  
+  <mat-divider fxFlexFill></mat-divider>
+  
+  <div fxLayout="column" fxLayoutGap="5px">
+    <ng-container *ngFor="let application of applications$ | async; let i = index">
+      <div fxLayout="row">
+        <mat-card fxFlex.gt-xs="600px">
+          <div fxLayout="column" fxLayoutGap="30px">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+              <div fxFlex="auto">
+                <app-application [application]="application"></app-application>
+              </div>
+              <div fxFlexAlign="end">
+                <div fxLayout="column" fxLayoutAlign="start center">
+                  <div>
+                    {{numberOfProposals(i)}}
+                  </div>
+                  <div>
+                    proposals
+                  </div>
+                </div>
+              </div>
+              <button
+                mat-raised-button
+                color="primary"
+                fxFlexAlign="end"
+              >
+                Submit Proposal
+              </button>
+            </div>
+            <app-record-voice></app-record-voice>
+          </div>
+        </mat-card>
+      </div>
+    </ng-container>
+  </div>
 
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let application of applications$ | async"
-      hideToggle
-    >
-      <mat-expansion-panel-header>
-        <app-application [application]="application"></app-application>
-      </mat-expansion-panel-header>
-
-      <mat-form-field>
-        <input matInput placeholder="First name">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Age">
-      </mat-form-field>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-  <div *ngIf="(applications$ | async).length === 0"
+  <div *ngIf="(applications$ | async)?.length === 0"
     fxLayout="row"
     fxLayoutAlign="center center"
     fxLayoutGap="10px"
@@ -38,7 +55,9 @@
     <p>
       Nothing found for:
     </p>
-    <mat-chip>{{searchValue}}</mat-chip>
+    <mat-chip-list>
+      <mat-chip>{{searchValue}}</mat-chip>
+    </mat-chip-list>
   </div>
 </div>
 

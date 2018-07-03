@@ -2,13 +2,20 @@
   <div fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
     <app-player (changeState)="changePlayerState($event)"></app-player>
   </div>
-  <mat-chip-list fxFlex="auto" *ngIf="playerState != PlayerState.Playing">
-    <mat-chip color="primary">{{ application.language }}</mat-chip>
-    <mat-chip
-      *ngFor="let tag of application.tags"
-      color="primary"
-    >
-      {{ tag }}
-    </mat-chip>
-  </mat-chip-list>
+  <mat-divider vertical="true"></mat-divider>
+  <ng-container *ngIf="playerState != PlayerState.Playing">
+    <div fxFlex="auto">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-chip-list fxFlex="1 1 auto">
+          <mat-chip>{{ application.language }}</mat-chip>
+          <mat-chip *ngFor="let tag of application.tags">
+            {{ tag }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div>
+      {{elapsedTime()}}
+    </div>
+  </ng-container>
 </div>
