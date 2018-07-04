@@ -4,6 +4,7 @@ import { ApplicationService } from '../../services/application.service';
 import { Application } from '../../models/application';
 import { Observable } from 'rxjs';
 import { ApplicationComponent } from '../../shared/application/application.component';
+import { PlayerState } from '../../shared/player/player-state';
 
 @Component({
   selector: 'app-explore',
@@ -23,7 +24,7 @@ export class ExploreComponent implements OnInit {
     this.setApplications$(this.applicationService.getApplications());
   }
 
-  setApplications$(applicationsObservable: Observable<Application[]>) {
+  setApplications$(applicationsObservable: Observable<Application[]>): void {
     this.applications$ = applicationsObservable;
     this.applications$.subscribe(
       applications =>
@@ -45,12 +46,29 @@ export class ExploreComponent implements OnInit {
     return '20-50';
   }
 
-  filter(value: string) {
+  filter(value: string): void {
     this.searchValue = value;
     if (value.trim().length === 0) {
       this.setApplications$(this.applicationService.getApplications());
     } else {
       this.setApplications$(this.applicationService.filterApplications(value));
+    }
+  }
+
+  changePlayerState(appId: number, playerState: PlayerState): void {
+    console.log(this.playingApplicationId, appId);
+    if (this.playingApplicationId !== undefined && this.playingApplicationId !== appId) {
+      const appComponent = this.applicationComponents.find(
+        app => app.application.id === this.playingApplicationId);
+      this.playingApplicationId = undefined;
+      if (appComponent !== undefined) {
+        appComponent.stopPlaying();
+      }
+    }
+    if (playerState === PlayerState.Playing) {
+      this.playingApplicationId = appId;
+    } else {
+      this.playingApplicationId = undefined;
     }
   }
 }
