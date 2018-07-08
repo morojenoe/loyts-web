@@ -4,22 +4,24 @@
   </div>
   <mat-divider vertical="true"></mat-divider>
   <ng-container *ngIf="playerState != PlayerState.Playing">
-    <div fxFlex="auto">
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <mat-chip-list fxFlex="1 1 auto">
-          <mat-chip>{{ application.language }}</mat-chip>
-          <mat-chip *ngFor="let tag of application.tags">
+    <div class="tag-list" fxFlex.gt-xs="200px">
+      <mat-chip-list>
+        <div class="tag-wrapper" fxLayout="row" fxLayoutAlign="start center">
+          <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
+          <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
             {{ tag }}
           </mat-chip>
-        </mat-chip-list>
-      </div>
+        </div>
+      </mat-chip-list>
     </div>
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <div>
-        {{elapsedTime()}}
-      </div>
-      <div>
-        ago
+    <div fxFlex="auto">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          {{elapsedTime()}}
+        </div>
+        <div>
+          ago
+        </div>
       </div>
     </div>
   </ng-container>

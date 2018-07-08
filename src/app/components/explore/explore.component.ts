@@ -56,7 +56,6 @@ export class ExploreComponent implements OnInit {
   }
 
   changePlayerState(appId: number, playerState: PlayerState): void {
-    console.log(this.playingApplicationId, appId);
     if (this.playingApplicationId !== undefined && this.playingApplicationId !== appId) {
       const appComponent = this.applicationComponents.find(
         app => app.application.id === this.playingApplicationId);

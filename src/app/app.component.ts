@@ -8,15 +8,13 @@ class Navigation {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  components: Navigation[];
-  constructor() {
-    this.components = [
-      { title: 'Explore', routerLink: '/explore' },
-      { title: 'Application', routerLink: '/application' },
-      { title: 'Chat Room', routerLink: '/chat-room' },
-    ];
-  }
+  readonly components: Navigation[] = [
+    { title: 'Explore', routerLink: '/explore' },
+    { title: 'Application', routerLink: '/application' },
+    { title: 'Chat Room', routerLink: '/chat-room' },
+  ];
+  constructor() { }
 }
