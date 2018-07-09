@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@cospired/i18n-iso-languages": "^1.0.2",
+    "angular-pipes": "^8.0.0",
     "core-js": "^2.5.4",
     "date-fns": "^2.0.0-alpha.11",
     "opus-recorder": "^4.1.4",
