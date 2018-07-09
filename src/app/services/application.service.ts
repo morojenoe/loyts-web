@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Application } from '../models/application';
+import { Proposal } from '../models/proposal';
 import { Observable, of } from 'rxjs';
 import { IApplicationService } from '../interfaces/i-application-service';
 import { HttpClient } from '@angular/common/http';
@@ -29,15 +30,8 @@ export class ApplicationService implements IApplicationService {
     );
   }
 
-  getApplicationProposalCount(applicationId: number): number {
-    return 1;
-  }
-
-  getCountApplicationProposals(applications: Application[]): number[] {
-    const countProposals = [];
-    for (let i = 0; i < applications.length; i += 1) {
-      countProposals.push(this.getApplicationProposalCount(applications[i].id));
-    }
-    return countProposals;
+  getProposals(): Observable<Proposal[]> {
+    const url = `/api/proposals`;
+    return this.http.get<Proposal[]>(url);
   }
 }

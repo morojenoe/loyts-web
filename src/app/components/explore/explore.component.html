@@ -18,33 +18,44 @@
       <div fxLayout="row">
         <mat-card fxFlex.gt-xs="600px">
           <div fxLayout="column" fxLayoutGap="30px">
-            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
-              <div fxFlex="auto">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+              <div fxFlex="noshrink" fxFlexAlign="center">
                 <app-application
                   id="{{application.id}}"
                   (changePlayer)="changePlayerState(application.id, $event)"
                   [application]="application"
                 ></app-application>
               </div>
-              <div fxFlex="grow">
-                <div fxLayout="column" fxLayoutAlign="start center">
-                  <div>
-                    {{numberOfProposals(i)}}
+              <mat-divider fxLayoutAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
+              <div fxFlex="noshrink" fxFlexAlign="center">
+                <div
+                  fxLayout="row"
+                  fxLayoutGap="5px"
+                  matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
+                >
+                  <div fxFlex="grow" class="mat-body-2">
+                    {{numberOfProposals(application.countProposals)}}
                   </div>
-                  <div>
-                    proposals
-                  </div>
+                  <mat-icon>face</mat-icon>
                 </div>
               </div>
-              <div fxFlex="grow">
+              <mat-divider fxLayoutAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
+              <div fxFlex="grow" fxFlexAlign="center">
                 <button
                   mat-raised-button
                   color="primary"
+                  *ngIf="!isAlreadyApplied(application.id)"
                 >
                   Submit Proposal
                 </button>
+                <button mat-icon-button>
+                  <mat-icon
+                    *ngIf="isAlreadyApplied(application.id)"
+                  >arrow_drop_down_circle</mat-icon>
+                </button>
               </div>
             </div>
+            <mat-divider [inset]="true"></mat-divider>
             <app-record-voice></app-record-voice>
           </div>
         </mat-card>

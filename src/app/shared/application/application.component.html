@@ -1,10 +1,9 @@
-<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-  <div fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+  <div fxLayoutAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
     <app-player (changeState)="changePlayerState($event)"></app-player>
   </div>
-  <mat-divider vertical="true"></mat-divider>
   <ng-container *ngIf="playerState != PlayerState.Playing">
-    <div class="tag-list" fxFlex.gt-xs="200px">
+    <div class="tag-list" fxFlex.gt-xs="250px" fxLayoutAlign="center">
       <mat-chip-list>
         <div class="tag-wrapper" fxLayout="row" fxLayoutAlign="start center">
           <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
@@ -14,14 +13,18 @@
         </div>
       </mat-chip-list>
     </div>
-    <div fxFlex="auto">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <div>
+    <mat-divider fxLayoutAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
+    <div fxFlex="none" fxFlexAlign="center">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="5px"
+        matTooltip="Created {{elapsedTime()}} ago"
+      >
+        <div class="mat-caption">
           {{elapsedTime()}}
         </div>
-        <div>
-          ago
-        </div>
+        <mat-icon>timelapse</mat-icon>
       </div>
     </div>
   </ng-container>

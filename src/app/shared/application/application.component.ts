@@ -32,7 +32,7 @@ export class ApplicationComponent implements OnInit {
   elapsedTime(): string {
     const time = formatDistanceStrict(this.application.time, new Date(Date.now()));
     if (time.search('second') !== -1) {
-      return '1 minute';
+      return '1 min';
     }
     return time;
   }

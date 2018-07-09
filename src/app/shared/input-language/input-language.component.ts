@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import { LocalizedCountryNames, langs, getNames, registerLocale } from '@cospired/i18n-iso-languages';
+import { getNames, registerLocale } from '@cospired/i18n-iso-languages';
 
 
 class Language {

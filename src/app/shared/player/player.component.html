@@ -2,11 +2,12 @@
   <button
     *ngSwitchCase="State.NotStarted"
     mat-icon-button
+    class="icon"
     (click)="play()"
   >
-    <span class="icon">
-      <mat-icon inline>play_circle_outline</mat-icon>
-    </span>
+    <!-- <div class="icon"> -->
+      <mat-icon class="icon">play_circle_outline</mat-icon>
+    <!-- </div> -->
   </button>
   <ng-container *ngSwitchCase="State.Playing">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
