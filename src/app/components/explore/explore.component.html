@@ -42,21 +42,28 @@
               <mat-divider fxLayoutAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
               <div fxFlex="grow" fxFlexAlign="center">
                 <button
-                  mat-raised-button
-                  color="primary"
-                  *ngIf="!isAlreadyApplied(application.id)"
+                  [disabled]="creatingProposalForAppId && creatingProposalForAppId !== application.id"
+                  mat-icon-button
+                  (click)="initVoiceRecording(application.id)"
                 >
-                  Submit Proposal
-                </button>
-                <button mat-icon-button>
                   <mat-icon
-                    *ngIf="isAlreadyApplied(application.id)"
-                  >arrow_drop_down_circle</mat-icon>
+                    *ngIf="!creatingProposalForAppId || creatingProposalForAppId !== application.id"
+                  >
+                    arrow_drop_down
+                  </mat-icon>
+                  <mat-icon
+                    *ngIf="creatingProposalForAppId && creatingProposalForAppId === application.id"
+                  >
+                    arrow_drop_up
+                  </mat-icon>
                 </button>
               </div>
             </div>
-            <mat-divider [inset]="true"></mat-divider>
-            <app-record-voice></app-record-voice>
+            <ng-container
+              *ngIf="creatingProposalForAppId && creatingProposalForAppId === application.id">
+              <mat-divider [inset]="true"></mat-divider>
+              <app-record-voice></app-record-voice>
+            </ng-container>
           </div>
         </mat-card>
       </div>

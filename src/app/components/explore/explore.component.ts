@@ -16,8 +16,8 @@ export class ExploreComponent implements OnInit {
   @ViewChildren(ApplicationComponent) applicationComponents: QueryList<ApplicationComponent>;
   applications$: Observable<Application[]>;
   proposals: Proposal[];
-  searchValue: string;
   playingApplicationId: number;
+  creatingProposalForAppId: number;
 
   constructor(@Inject(ApplicationService) private applicationService: IApplicationService) { }
 
@@ -50,11 +50,18 @@ export class ExploreComponent implements OnInit {
   }
 
   filter(value: string): void {
-    this.searchValue = value;
     if (value.trim().length === 0) {
       this.setApplications$(this.applicationService.getApplications());
     } else {
       this.setApplications$(this.applicationService.filterApplications(value));
+    }
+  }
+
+  initVoiceRecording(applicationId: number) {
+    if (this.creatingProposalForAppId && this.creatingProposalForAppId === applicationId) {
+      this.creatingProposalForAppId = undefined;
+    } else {
+      this.creatingProposalForAppId = applicationId;
     }
   }
 
