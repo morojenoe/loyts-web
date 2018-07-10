@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
-  <div fxLayoutAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
+  <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
     <app-player (changeState)="changePlayerState($event)"></app-player>
   </div>
   <ng-container *ngIf="playerState != PlayerState.Playing">

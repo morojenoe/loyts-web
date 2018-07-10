@@ -1,6 +1,35 @@
 <mat-vertical-stepper linear (selectionChange)="selectionChange($event)">
   <mat-step label="Record Application" [completed]="application.audio">
-    <app-record-voice (recordedVoice)="recordedVoice($event)"></app-record-voice>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div class="mat-body-1">
+          In your application try to emphasize your goals and what kind of person you are looking for.
+      </div>
+      <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Example 1
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="mat-body-1">
+              Hi! My name is Lin Lin. I'm from China. On the next week, I'm going to visit Paris,
+              so I'm looking for someone from this town or who were there to talk about must visit places.
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Example 2
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="mat-body-1">
+              Hi there! My name is Mark. I want to talk to someone who loves football as I am.
+              If you watch La Liga and root for FC Barcelona, let's root for together!
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      <app-record-voice (recordedVoice)="recordedVoice($event)"></app-record-voice>
+    </div>
     <div class="stepper-buttons" *ngIf="application.audio">
       <button mat-raised-button color="primary" matStepperNext>
         Next
