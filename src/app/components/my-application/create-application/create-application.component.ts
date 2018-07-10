@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+
 import { Application } from '../../../models/application';
 
 @Component({
@@ -25,5 +27,15 @@ export class CreateApplicationComponent implements OnInit {
 
   recordedVoice(audio: any) {
     this.application.audio = audio;
+  }
+
+  selectionChange(event: StepperSelectionEvent) {
+    if (event.selectedIndex === 3) {
+      this.application.time = new Date(Date.now());
+    }
+  }
+
+  publish() {
+    this.application.time = new Date(Date.now());
   }
 }

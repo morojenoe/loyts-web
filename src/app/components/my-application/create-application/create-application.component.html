@@ -1,4 +1,4 @@
-<mat-vertical-stepper linear #stepper>
+<mat-vertical-stepper linear (selectionChange)="selectionChange($event)">
   <mat-step label="Record Application" [completed]="application.audio">
     <app-record-voice (recordedVoice)="recordedVoice($event)"></app-record-voice>
     <div class="stepper-buttons" *ngIf="application.audio">
@@ -32,7 +32,7 @@
     <app-application [application]="application"></app-application>
     <div class="stepper-buttons" fxLayoutGap="10px">
       <button mat-raised-button color="warn" matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" (click)="stepper.reset()">Publish</button>
+      <button mat-raised-button color="primary" (click)="publish()">Publish</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>
