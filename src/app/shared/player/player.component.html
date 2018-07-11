@@ -1,29 +1,30 @@
-<ng-container [ngSwitch]="state">
-  <button
-    *ngSwitchCase="State.NotStarted"
-    mat-icon-button
-    class="icon"
-    (click)="play()"
-  >
-    <!-- <div class="icon"> -->
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <ng-container [ngSwitch]="state">
+    <button
+      *ngSwitchCase="State.NotStarted"
+      mat-icon-button
+      class="icon"
+      (click)="play()"
+    >
       <mat-icon class="icon">play_circle_outline</mat-icon>
-    <!-- </div> -->
-  </button>
-  <ng-container *ngSwitchCase="State.Playing">
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-      <button mat-icon-button disableRipple (click)="stop()">
-        <div class="icon">
-          <mat-icon inline>stop</mat-icon>
-        </div>
-      </button>
-      <div fxFlex="grow">
-        <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
-          <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
-          <div fxLayout="row" fxLayoutAlign="center center">
-            {{time}}s / {{duration}}s
-          </div>
-        </div>
+    </button>
+    <button
+      *ngSwitchCase="State.Playing"
+      mat-icon-button
+      disableRipple
+      (click)="stop()"
+    >
+      <div class="icon"><mat-icon inline>stop</mat-icon></div>
+    </button>
+  </ng-container>
+
+  <div fxFlex="grow" *ngIf="showTimeline || state === State.Playing">
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        {{time}}s / {{duration}}s
       </div>
     </div>
-  </ng-container>
-</ng-container>
+  </div>
+
+</div>

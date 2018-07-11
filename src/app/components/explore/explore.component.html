@@ -4,7 +4,7 @@
     <input
       #filterInput
       matInput
-      (keyup.enter)="filter(filterInput.value)"
+      (keyup)="filter(filterInput.value)"
       maxLength="50"
     >
     <mat-hint align="end">{{filterInput.value.length}} / 50</mat-hint>

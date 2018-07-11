@@ -18,6 +18,9 @@ export class ApplicationService implements IApplicationService {
   }
 
   filterApplications(filterValue: string): Observable<Application[]> {
+    if (!filterValue.trim()) {
+      return this.getApplications();
+    }
     return this.http.get<Application[]>(this.applicationUrl).pipe(
       map(applications =>
         applications.filter(app => {

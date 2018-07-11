@@ -14,9 +14,10 @@ import { PlayerState } from './player-state';
 export class PlayerComponent implements OnInit {
   State = PlayerState;
   @Input() duration = 30;
+  @Input() showTimeline = false;
   state = this.State.NotStarted;
   timer: Subscription;
-  time: Number = null;
+  time: Number = 0;
 
   @Output() changeState = new EventEmitter<PlayerState>();
 
@@ -40,6 +41,7 @@ export class PlayerComponent implements OnInit {
 
   stop() {
     this.state = this.State.NotStarted;
+    this.time = 0;
     this.changeState.emit(this.state);
     this.timer.unsubscribe();
   }

@@ -34,7 +34,7 @@
   <ng-container *ngSwitchCase="State.Finished">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
       <div fxFlexFill>
-        <app-player></app-player>
+        <app-player [showTimeline]="true"></app-player>
       </div>
       <button fxFlexFill mat-raised-button (click)="startRecording()">
         Rerecord Voice
