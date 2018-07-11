@@ -3,7 +3,7 @@
     <app-player (changeState)="changePlayerState($event)"></app-player>
   </div>
   <ng-container *ngIf="playerState != PlayerState.Playing">
-    <div class="tag-list" fxFlex.gt-xs="250px" fxFlexAlign="center">
+    <div class="tag-list" fxFlex.gt-xs="grow" fxFlexAlign="center">
       <mat-chip-list>
         <div fxLayout="row" fxLayoutAlign="start center">
           <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
@@ -13,8 +13,10 @@
         </div>
       </mat-chip-list>
     </div>
-    <mat-divider fxFlexAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
-    <div fxFlex="none" fxFlexAlign="center">
+    <div fxFlex="nogrow">
+      <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+    </div>
+    <div fxFlex="90px" fxFlexAlign="center">
       <div
         fxLayout="row"
         fxLayoutAlign="center center"

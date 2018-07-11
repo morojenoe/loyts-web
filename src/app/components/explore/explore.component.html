@@ -19,28 +19,33 @@
         <mat-card fxFlex.gt-xs="600px">
           <div fxLayout="column" fxLayoutGap="30px">
             <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
-              <div fxFlex="noshrink" fxFlexAlign="center">
+              <div fxFlex="404px" fxFlexAlign="center">
                 <app-application
                   id="{{application.id}}"
                   (changePlayer)="changePlayerState(application.id, $event)"
                   [application]="application"
                 ></app-application>
               </div>
-              <mat-divider fxFlexAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
-              <div fxFlex="noshrink" fxFlexAlign="center">
+              <div fxFlex="nogrow">
+                <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+              </div>
+              <div fxFlex="0 0 66px" fxFlexAlign="center">
                 <div
                   fxLayout="row"
+                  fxLayoutAlign="center"
                   fxLayoutGap="5px"
                   matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
                 >
-                  <div fxFlex="grow" class="mat-body-2">
+                  <div class="mat-body-2">
                     {{numberOfProposals(application.countProposals)}}
                   </div>
                   <mat-icon>face</mat-icon>
                 </div>
               </div>
-              <mat-divider fxFlexAlign="stretch" [inset]="true" [vertical]="true"></mat-divider>
-              <div fxFlex="grow" fxFlexAlign="center">
+              <div fxFlex="nogrow">
+                <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+              </div>
+              <div fxFlex="none" fxFlexAlign="center">
                 <button
                   [disabled]="creatingProposalForAppId && creatingProposalForAppId !== application.id"
                   mat-icon-button
@@ -79,7 +84,7 @@
       Nothing found for:
     </p>
     <mat-chip-list>
-      <mat-chip>{{searchValue}}</mat-chip>
+      <mat-chip>{{filterInput.value}}</mat-chip>
     </mat-chip-list>
   </div>
 </div>
