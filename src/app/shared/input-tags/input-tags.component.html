@@ -1,26 +1,28 @@
-<mat-form-field>
-  <mat-chip-list #chipList>
-    <mat-chip
-      *ngFor="let tag of tags"
-      [selectable]="selectable"
-      removable
-      (removed)="remove(tag)"
-    >
-      {{tag}}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-    <input
-      #input
-      matInput
-      [disabled]="tags.length >= 5"
-      placeholder="Tags"
-      [maxLength]="maxTagLength"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [matChipInputAddOnBlur]="addOnBlur"
-      (matChipInputTokenEnd)="add($event)"
-    />
-  </mat-chip-list>
-  <mat-hint align="start">{{tags.length}}/{{maxTagCount}} tags</mat-hint>
-  <mat-hint align="end">{{input.value?.length || 0}}/{{maxTagLength}}</mat-hint>
-</mat-form-field>
+<div fxLayout="row">
+  <mat-form-field fxFlexFill>
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let tag of tags"
+        [selectable]="selectable"
+        removable
+        (removed)="remove(tag)"
+      >
+        {{tag}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        #input
+        matInput
+        [disabled]="tags.length >= 5"
+        placeholder="Tags"
+        [maxLength]="maxTagLength"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-hint align="start">{{tags.length}}/{{maxTagCount}} tags</mat-hint>
+    <mat-hint align="end">{{input.value?.length || 0}}/{{maxTagLength}}</mat-hint>
+  </mat-form-field>
+</div>
