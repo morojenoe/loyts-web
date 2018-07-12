@@ -35,7 +35,6 @@ export class RecordVoiceComponent implements OnInit {
   }
 
   startRecording() {
-    this.recordedVoice.emit(null);
     this.state = this.State.Started;
     this.subscribeToTimer();
   }

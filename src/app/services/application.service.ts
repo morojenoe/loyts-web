@@ -38,6 +38,10 @@ export class ApplicationService implements IApplicationService {
     return this.http.get<Proposal[]>(url);
   }
 
+  addProposal(proposal: Proposal): Observable<Proposal> {
+    return this.http.post<Proposal>('/api/proposals', proposal);
+  }
+
   getMyApplication(): Observable<Application> {
     return this.getApplications().pipe(
       map(applications => applications[10])

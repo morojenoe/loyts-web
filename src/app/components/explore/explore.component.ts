@@ -21,6 +21,7 @@ export class ExploreComponent implements OnInit {
   proposals: Proposal[];
   playingApplicationId: number;
   creatingProposalForAppId: number;
+  proposalMessage: any;
 
   constructor(@Inject(ApplicationService) private applicationService: IApplicationService) { }
 
@@ -79,5 +80,25 @@ export class ExploreComponent implements OnInit {
     } else {
       this.playingApplicationId = undefined;
     }
+  }
+
+  setRecordedProposal(voice: any) {
+    this.proposalMessage = voice;
+  }
+
+  discardProposal() {
+    this.proposalMessage = undefined;
+    this.creatingProposalForAppId = undefined;
+  }
+
+  submitProposal(applicationId: number) {
+    const proposal: Proposal = {
+      id: -1,
+      applicationId: applicationId,
+      audio: this.proposalMessage,
+    };
+    this.applicationService.addProposal(proposal).subscribe(
+      () => this.discardProposal()
+    );
   }
 }
