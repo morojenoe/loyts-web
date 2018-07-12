@@ -15,7 +15,7 @@
   
   <div fxLayout="column" fxLayoutGap="5px">
     <ng-container *ngFor="let application of applications$ | async; let i = index">
-      <div fxLayout="row">
+      <div class="application-container" fxLayout="row">
         <mat-card fxFlex.gt-xs="600px">
           <div fxLayout="column" fxLayoutGap="30px">
             <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">

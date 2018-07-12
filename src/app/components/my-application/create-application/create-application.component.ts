@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
+import { ApplicationService } from '../../../services/application.service';
+import { IApplicationService } from '../../../interfaces/i-application-service';
 import { Application } from '../../../models/application';
 
 @Component({
@@ -10,11 +13,19 @@ import { Application } from '../../../models/application';
 })
 export class CreateApplicationComponent implements OnInit {
   application: Application;
-  constructor() {
+  constructor(@Inject(ApplicationService) private appService: IApplicationService,
+              private router: Router) {
     this.application = new Application();
   }
 
   ngOnInit() {
+    this.appService.getMyApplication().subscribe(
+      application => {
+        if (application) {
+          this.router.navigate(['/application']);
+        }
+      }
+    );
   }
 
   changeLanguage(language: string) {
@@ -37,5 +48,10 @@ export class CreateApplicationComponent implements OnInit {
 
   publish() {
     this.application.time = new Date(Date.now());
+    this.appService.addApplication(this.application).subscribe(
+      application => {
+        this.router.navigate(['/application']);
+      }
+    );
   }
 }

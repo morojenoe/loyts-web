@@ -1,15 +1,3 @@
-<div
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxLayoutAlign="center center"
-  fxLayoutGap="5%"
->
-  <p>You've not created an application yet.</p>
-  <a
-    mat-raised-button
-    color="primary"
-    routerLink="/application/create"
-  >
-    Create an Application
-  </a>
-</div>
+<ng-container *ngIf="application">
+  <app-application [application]="application"></app-application>
+</ng-container>

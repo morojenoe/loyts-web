@@ -4,6 +4,8 @@ import { Proposal } from '../models/proposal';
 
 export interface IApplicationService {
   getApplications(): Observable<Application[]>;
+  getMyApplication(): Observable<Application>;
   filterApplications(filterValue: string): Observable<Application[]>;
   getProposals(): Observable<Proposal[]>;
+  addApplication(application: Application): Observable<Application>;
 }
