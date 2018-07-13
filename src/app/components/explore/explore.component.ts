@@ -41,19 +41,6 @@ export class ExploreComponent implements OnInit {
     return this.proposals.findIndex(proposal => proposal.applicationId === applicationId) !== -1;
   }
 
-  numberOfProposals(proposalsCount): string {
-    if (proposalsCount < 5) {
-      return '< 5';
-    }
-    if (proposalsCount < 10) {
-      return '5-10';
-    }
-    if (proposalsCount < 20) {
-      return '10-20';
-    }
-    return '20-50';
-  }
-
   filter(value: string): void {
     this.searchTerms.next(value);
   }
@@ -80,25 +67,5 @@ export class ExploreComponent implements OnInit {
     } else {
       this.playingApplicationId = undefined;
     }
-  }
-
-  setRecordedProposal(voice: any) {
-    this.proposalMessage = voice;
-  }
-
-  discardProposal() {
-    this.proposalMessage = undefined;
-    this.creatingProposalForAppId = undefined;
-  }
-
-  submitProposal(applicationId: number) {
-    const proposal: Proposal = {
-      id: -1,
-      applicationId: applicationId,
-      audio: this.proposalMessage,
-    };
-    this.applicationService.addProposal(proposal).subscribe(
-      () => this.discardProposal()
-    );
   }
 }

@@ -37,6 +37,8 @@ import { ApplicationComponent } from './shared/application/application.component
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { CreateProposalComponent } from './shared/create-proposal/create-proposal.component';
+import { ProposalComponent } from './shared/proposal/proposal.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     InputLanguageComponent,
     PlayerComponent,
     ApplicationComponent,
+    CreateProposalComponent,
+    ProposalComponent,
   ],
   imports: [
     BrowserModule,

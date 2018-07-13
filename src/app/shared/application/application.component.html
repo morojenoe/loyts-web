@@ -1,33 +1,82 @@
-<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
-  <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
-    <app-player (changeState)="changePlayerState($event)"></app-player>
-  </div>
-  <ng-container *ngIf="playerState != PlayerState.Playing">
-    <div class="tag-list" fxFlex.gt-xs="grow" fxFlexAlign="center">
-      <mat-chip-list>
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
-          <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
-            {{ tag }}
-          </mat-chip>
+<div fxLayout="row">
+  <mat-card fxFlex.gt-xs="600px">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+        <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
+          <app-player (changeState)="changePlayerState($event)"></app-player>
         </div>
-      </mat-chip-list>
-    </div>
-    <div fxFlex="nogrow">
-      <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
-    </div>
-    <div fxFlex="90px" fxFlexAlign="center">
-      <div
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxLayoutGap="5px"
-        matTooltip="Created {{elapsedTime()}} ago"
-      >
-        <div class="mat-caption">
-          {{elapsedTime()}}
-        </div>
-        <mat-icon>timelapse</mat-icon>
+        <ng-container *ngIf="playerState != PlayerState.Playing">
+          <div class="tag-list" fxFlex.gt-xs="grow" fxFlexAlign="center">
+            <mat-chip-list>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
+                <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
+                  {{ tag }}
+                </mat-chip>
+              </div>
+            </mat-chip-list>
+          </div>
+          <div fxFlex="nogrow">
+            <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+          </div>
+          <div fxFlex="0 0 57px" fxFlexAlign="center">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="5px"
+              matTooltip="Created {{elapsedTime()}} ago"
+            >
+              <div class="mat-caption">
+                {{elapsedTime()}}
+              </div>
+              <mat-icon>timelapse</mat-icon>
+            </div>
+          </div>
+          <div fxFlex="nogrow">
+              <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+            </div>
+          <div fxFlex.gt-xs="0 0 66px" fxFlexAlign="center">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center"
+              fxLayoutGap="5px"
+              matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
+            >
+              <div class="mat-body-2">
+                {{numberOfProposals(application.countProposals)}}
+              </div>
+              <mat-icon>face</mat-icon>
+            </div>
+          </div>
+          <div fxFlex="nogrow">
+            <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+          </div>
+          <div fxFlex="none" fxFlexAlign="center">
+            <button
+              *ngIf="!isProposalDialogOpen"
+              mat-icon-button
+              (click)="openProposalDialog(application.id)"
+            >
+            <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <button
+              *ngIf="isProposalDialogOpen"
+              mat-icon-button
+              (click)="closeProposalDialog()"
+            >
+              <mat-icon>arrow_drop_up</mat-icon>
+            </button>
+          </div>
+        </ng-container>
       </div>
+      <ng-container *ngIf="isProposalDialogOpen">
+        <mat-divider [inset]="true"></mat-divider>
+        <app-create-proposal
+          [applicationId]="application.id"
+          (close)="closeProposalDialog()"
+        >
+        </app-create-proposal>
+      </ng-container>
     </div>
-  </ng-container>
+  </mat-card>
 </div>

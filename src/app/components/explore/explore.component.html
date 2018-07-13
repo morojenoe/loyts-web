@@ -15,7 +15,8 @@
   
   <div fxLayout="column" fxLayoutGap="5px">
     <ng-container *ngFor="let application of applications$ | async; let i = index">
-      <div class="application-container" fxLayout="row">
+      <app-application [application]="application"></app-application>
+      <!-- <div class="application-container" fxLayout="row">
         <mat-card fxFlex.gt-xs="600px">
           <div fxLayout="column" fxLayoutGap="30px">
             <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start">
@@ -93,7 +94,7 @@
             </ng-container>
           </div>
         </mat-card>
-      </div>
+      </div> -->
     </ng-container>
   </div>
 

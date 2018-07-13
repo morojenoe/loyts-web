@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
-import { formatDistanceStrict } from 'date-fns';
+import { differenceInMinutes } from 'date-fns';
 
 import { PlayerComponent } from '../player/player.component';
 import { Application } from '../../models/application';
@@ -18,10 +18,19 @@ export class ApplicationComponent implements OnInit {
   @ViewChild(PlayerComponent) playerComponent;
   @Input() application: Application;
   @Output() changePlayer = new EventEmitter<PlayerState>();
+  isProposalDialogOpen = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  openProposalDialog() {
+    this.isProposalDialogOpen = true;
+  }
+
+  closeProposalDialog() {
+    this.isProposalDialogOpen = false;
   }
 
   changePlayerState(playerState: PlayerState) {
@@ -30,11 +39,30 @@ export class ApplicationComponent implements OnInit {
   }
 
   elapsedTime(): string {
-    const time = formatDistanceStrict(this.application.time, new Date(Date.now()));
-    if (time.search('second') !== -1) {
-      return '1 min';
+    const time = differenceInMinutes(this.application.time, new Date(Date.now()));
+    if (time < 45) {
+      return `${time} m`;
     }
-    return time;
+    if (time < 75) {
+      return `1 h`;
+    }
+    if (time < 105) {
+      return '1.5 h';
+    }
+    return '2 h';
+  }
+
+  numberOfProposals(proposalsCount): string {
+    if (proposalsCount < 5) {
+      return '< 5';
+    }
+    if (proposalsCount < 10) {
+      return '5-10';
+    }
+    if (proposalsCount < 20) {
+      return '10-20';
+    }
+    return '20-50';
   }
 
   stopPlaying(): void {
