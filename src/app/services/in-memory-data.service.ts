@@ -23,15 +23,18 @@ export class InMemoryDataService implements InMemoryDbService {
     const proposals: Proposal[] = [
       {
         id: 1,
-        applicationId: 1
+        applicationId: 1,
+        audio: undefined,
       },
       {
         id: 2,
         applicationId: 3,
+        audio: undefined,
       },
       {
         id: 3,
         applicationId: 8,
+        audio: undefined,
       },
     ];
     return {applications, proposals};

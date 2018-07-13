@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { VoiceRecorderService } from '../../services/voice-recorder.service';
+
 enum RecordingState {
   NotStarted,
   Started,
@@ -23,6 +25,8 @@ export class RecordVoiceComponent implements OnInit {
   timer: Subscription;
   time: Number = null;
 
+  constructor(private voiceRecorderService: VoiceRecorderService) { }
+
   ngOnInit() {
   }
 
@@ -35,14 +39,24 @@ export class RecordVoiceComponent implements OnInit {
   }
 
   startRecording() {
-    this.state = this.State.Started;
-    this.subscribeToTimer();
+    this.voiceRecorderService.start().subscribe(
+      start => {
+        if (start) {
+          this.state = this.State.Started;
+          this.subscribeToTimer();
+        }
+      }
+    );
   }
 
   finishRecording() {
-    this.state = this.State.Finished;
-    this.timer.unsubscribe();
-    this.recordedVoice.emit('asd');
+    this.voiceRecorderService.stop().subscribe(
+      audio => {
+        this.state = this.State.Finished;
+        this.timer.unsubscribe();
+        this.recordedVoice.emit(audio);
+      }
+    );
   }
 
   playApplication() {
