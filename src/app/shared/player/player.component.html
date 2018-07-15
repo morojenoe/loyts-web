@@ -3,10 +3,11 @@
     <button
       *ngSwitchCase="State.NotStarted"
       mat-icon-button
-      class="icon"
       (click)="play()"
     >
-      <mat-icon class="icon">play_circle_outline</mat-icon>
+      <div class="icon">
+        <mat-icon [inline]="true">play_circle_outline</mat-icon>
+      </div>
     </button>
     <button
       *ngSwitchCase="State.Playing"

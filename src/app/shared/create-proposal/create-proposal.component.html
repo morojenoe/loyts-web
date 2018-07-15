@@ -1,22 +1,22 @@
-<div fxLayout="column">
+<div fxLayout="column" fxLayoutGap="20px">
   <div fxFlexAlign="center" class="mat-title">Record your proposal</div>
   <app-record-voice (recordedVoice)="setRecordedProposal($event)"></app-record-voice>
-</div>
-<div fxLayout="row" fxLayoutGap="10px" *ngIf="proposalMessage">
-  <button
-    fxFlex="50%"
-    mat-raised-button
-    color="warn"
-    (click)="discardProposal()"
-  >
-    Discard
-  </button>
-  <button
-    fxFlex="50%"
-    mat-raised-button
-    color="primary"
-    (click)="submitProposal()"
-  >
-    Submit
-  </button>
+  <div fxLayout="row" fxLayoutGap="10px" *ngIf="proposalMessage">
+    <button
+      fxFlex="50%"
+      mat-raised-button
+      color="warn"
+      (click)="discardProposal()"
+    >
+      Discard
+    </button>
+    <button
+      fxFlex="50%"
+      mat-raised-button
+      color="primary"
+      (click)="submitProposal()"
+    >
+      Submit
+    </button>
+  </div>
 </div>
