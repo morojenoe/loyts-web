@@ -6,7 +6,7 @@
       (click)="play()"
     >
       <div class="icon">
-        <mat-icon [inline]="true">play_circle_outline</mat-icon>
+        <mat-icon [inline]="true" [color]="color">play_circle_outline</mat-icon>
       </div>
     </button>
     <button
@@ -15,7 +15,9 @@
       disableRipple
       (click)="stop()"
     >
-      <div class="icon"><mat-icon inline>stop</mat-icon></div>
+      <div class="icon">
+        <mat-icon inline [color]="color">stop</mat-icon>
+      </div>
     </button>
   </ng-container>
 

@@ -15,6 +15,7 @@ export class PlayerComponent implements OnInit {
   State = PlayerState;
   @Input() duration = 30;
   @Input() showTimeline = false;
+  @Input() color;
   state = this.State.NotStarted;
   timer: Subscription;
   time: Number = 0;

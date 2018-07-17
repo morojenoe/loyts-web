@@ -5,7 +5,7 @@ import { differenceInMinutes } from 'date-fns';
 import { PlayerComponent } from '../player/player.component';
 import { Application } from '../../models/application';
 import { PlayerState } from '../player/player-state';
-
+import { Proposal } from '../../models/proposal';
 
 @Component({
   selector: 'app-application',
@@ -17,6 +17,7 @@ export class ApplicationComponent implements OnInit {
   playerState = PlayerState.NotStarted;
   @ViewChild(PlayerComponent) playerComponent;
   @Input() application: Application;
+  @Input() proposal: Proposal;
   @Output() changePlayer = new EventEmitter<PlayerState>();
   isProposalDialogOpen = false;
 
@@ -31,6 +32,10 @@ export class ApplicationComponent implements OnInit {
 
   closeProposalDialog() {
     this.isProposalDialogOpen = false;
+  }
+
+  createdProposal(proposal: Proposal) {
+    this.proposal = proposal;
   }
 
   changePlayerState(playerState: PlayerState) {

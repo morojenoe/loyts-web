@@ -37,6 +37,14 @@ export class ExploreComponent implements OnInit {
     );
   }
 
+  findProposal(applicationId): Proposal {
+    const proposal = this.proposals.find(prop => prop.applicationId === applicationId);
+    if (proposal) {
+      return proposal;
+    }
+    return undefined;
+  }
+
   isAlreadyApplied(applicationId: number): boolean {
     return this.proposals.findIndex(proposal => proposal.applicationId === applicationId) !== -1;
   }

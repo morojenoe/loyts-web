@@ -1,103 +1,94 @@
 <div class="application-container" fxLayout="row" fxLayoutAlign="center">
   <mat-card fxFlex.gt-xs="600px" fxFlex.xs="96vw">
     <div fxLayout="column" fxLayoutGap="20px">
-      <div fxHide.xs="true">
-        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
-          <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
-            <app-player (changeState)="changePlayerState($event)"></app-player>
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+        <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'none' : 'grow'}}">
+          <app-player
+            (changeState)="changePlayerState($event)"
+            [color]="proposal? 'primary' : null"
+          >
+          </app-player>
+        </div>
+        <ng-container *ngIf="playerState != PlayerState.Playing">
+          <div class="tag-list" fxFlex.gt-xs="grow" fxFlexAlign="center">
+            <mat-chip-list>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
+                <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
+                  {{ tag }}
+                </mat-chip>
+              </div>
+            </mat-chip-list>
           </div>
-          <ng-container *ngIf="playerState != PlayerState.Playing">
-            <div class="tag-list" fxFlex.gt-xs="grow" fxFlexAlign="center">
-              <mat-chip-list>
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
-                  <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
-                    {{ tag }}
-                  </mat-chip>
-                </div>
-              </mat-chip-list>
+          <div fxFlex="nogrow" fxHide.xs>
+            <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+          </div>
+          <div fxFlex="0 0 57px" fxFlexAlign="center" fxHide.xs>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="5px"
+              matTooltip="Created {{elapsedTime()}} ago"
+            >
+              <div class="mat-caption">
+                {{elapsedTime()}}
+              </div>
+              <mat-icon>timelapse</mat-icon>
             </div>
-            <div fxFlex="nogrow">
+          </div>
+          <div fxFlex="nogrow" fxHide.xs>
               <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
             </div>
-            <div fxFlex="0 0 57px" fxFlexAlign="center">
-              <div
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                fxLayoutGap="5px"
-                matTooltip="Created {{elapsedTime()}} ago"
-              >
-                <div class="mat-caption">
-                  {{elapsedTime()}}
-                </div>
-                <mat-icon>timelapse</mat-icon>
+          <div fxFlex.gt-xs="0 0 66px" fxFlexAlign="center" fxHide.xs>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center"
+              fxLayoutGap="5px"
+              matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
+            >
+              <div class="mat-body-2">
+                {{numberOfProposals(application.countProposals)}}
               </div>
+              <mat-icon>face</mat-icon>
             </div>
-            <div fxFlex="nogrow">
-                <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
-              </div>
-            <div fxFlex.gt-xs="0 0 66px" fxFlexAlign="center">
-              <div
-                fxLayout="row"
-                fxLayoutAlign="center"
-                fxLayoutGap="5px"
-                matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
-              >
-                <div class="mat-body-2">
-                  {{numberOfProposals(application.countProposals)}}
-                </div>
-                <mat-icon>face</mat-icon>
-              </div>
-            </div>
-            <div fxFlex="nogrow">
-              <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
-            </div>
-            <div fxFlex="none" fxFlexAlign="center">
-              <button
-                *ngIf="!isProposalDialogOpen"
-                mat-icon-button
-                (click)="openProposalDialog(application.id)"
-              >
-              <mat-icon>arrow_drop_down</mat-icon>
-              </button>
-              <button
-                *ngIf="isProposalDialogOpen"
-                mat-icon-button
-                (click)="closeProposalDialog()"
-              >
-                <mat-icon>arrow_drop_up</mat-icon>
-              </button>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-      <div fxShow.xs="true" fxHide.gt-xs="true">
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start">
-          <div fxFlexAlign="center" fxFlex="{{playerState != PlayerState.Playing? 'initial' : 'grow'}}">
-            <app-player (changeState)="changePlayerState($event)"></app-player>
           </div>
-          <ng-container *ngIf="playerState != PlayerState.Playing">
-            <div class="tag-list" fxFlex="grow" fxFlexAlign="center">
-              <mat-chip-list>
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-chip fxFlex="none">{{ application.language }}</mat-chip>
-                  <mat-chip fxFlex="none" *ngFor="let tag of application.tags">
-                    {{ tag }}
-                  </mat-chip>
-                </div>
-              </mat-chip-list>
-            </div>
-          </ng-container>
-        </div>
+          <div fxFlex="nogrow">
+            <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+          </div>
+          <div fxFlex="none" fxFlexAlign="center">
+            <button
+              *ngIf="!isProposalDialogOpen"
+              mat-icon-button
+              (click)="openProposalDialog(application.id)"
+            >
+              <mat-icon [color]="proposal? 'primary' : null">arrow_drop_down</mat-icon>
+            </button>
+            <button
+              *ngIf="isProposalDialogOpen"
+              mat-icon-button
+              (click)="closeProposalDialog()"
+            >
+              <mat-icon [color]="proposal? 'primary' : null">arrow_drop_up</mat-icon>
+            </button>
+          </div>
+        </ng-container>
       </div>
-
+  
       <ng-container *ngIf="isProposalDialogOpen">
         <mat-divider [inset]="true"></mat-divider>
-        <app-create-proposal
-          [applicationId]="application.id"
-          (close)="closeProposalDialog()"
-        >
-        </app-create-proposal>
+        <ng-container *ngIf="!proposal">
+          <app-create-proposal
+            [applicationId]="application.id"
+            (close)="createdProposal($event)"
+          >
+          </app-create-proposal>
+        </ng-container>
+        <ng-container *ngIf="proposal">
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div class="mat-title" fxFlexAlign="center">Your Proposal</div>
+            <app-player [showTimeline]="true"></app-player>
+          </div>
+        </ng-container>
       </ng-container>
     </div>
   </mat-card>

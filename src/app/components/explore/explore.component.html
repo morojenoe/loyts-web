@@ -15,7 +15,11 @@
   
   <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center" fxFlexFill>
     <ng-container *ngFor="let application of applications$ | async; let i = index">
-      <app-application [application]="application"></app-application>
+      <app-application
+        [application]="application"
+        [proposal]="findProposal(application.id)"
+      >
+      </app-application>
     </ng-container>
   </div>
 

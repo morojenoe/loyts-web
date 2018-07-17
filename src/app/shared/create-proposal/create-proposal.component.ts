@@ -30,13 +30,14 @@ export class CreateProposalComponent implements OnInit {
 
   submitProposal() {
     const proposal: Proposal = {
-      id: -1,
+      id: Math.floor(Math.random() * 1000),
       applicationId: this.applicationId,
       audio: this.proposalMessage,
     };
     this.applicationService.addProposal(proposal).subscribe(
       prop => {
-        this.discardProposal();
+        console.log(prop);
+        this.proposalMessage = undefined;
         this.close.emit(prop);
       }
     );
