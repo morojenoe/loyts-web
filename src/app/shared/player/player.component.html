@@ -21,7 +21,7 @@
 
   <div fxFlex="grow" *ngIf="showTimeline || state === State.Playing">
     <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
-      <mat-progress-bar mode="determinate" [value]="time/30*100"></mat-progress-bar>
+      <mat-progress-bar color="accent" mode="determinate" [value]="time/30*100"></mat-progress-bar>
       <div fxLayout="row" fxLayoutAlign="center center">
         {{time}}s / {{duration}}s
       </div>

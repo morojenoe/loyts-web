@@ -1,8 +1,8 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$loyts-primary: mat-palette($mat-indigo);
-$loyts-accent:  mat-palette($mat-pink, A200, A100, A400);
+$loyts-primary: mat-palette($mat-green, 600, 200, 900);
+$loyts-accent:  mat-palette($mat-blue, 500, 100, 700);
 $loyts-warn:    mat-palette($mat-red);
 $loyts-theme:   mat-dark-theme($loyts-primary, $loyts-accent, $loyts-warn);
 
