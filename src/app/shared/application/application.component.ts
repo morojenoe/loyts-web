@@ -39,7 +39,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   elapsedTime(): string {
-    const time = differenceInMinutes(this.application.time, new Date(Date.now()));
+    const time = differenceInMinutes(new Date(Date.now()), this.application.time);
     if (time < 45) {
       return `${time} m`;
     }
