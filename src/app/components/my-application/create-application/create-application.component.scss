@@ -1,3 +1,13 @@
 .stepper-buttons {
   margin-top: 10px;
 }
+
+$title-margin: 15px;
+.title-margin {
+  margin-left: $title-margin;
+  margin-right: $title-margin;
+}
+
+.step-wrapper {
+  min-width: 0px;
+}

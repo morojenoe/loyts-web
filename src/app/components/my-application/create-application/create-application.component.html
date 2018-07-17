@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="15px">
-  <div class="mat-body-1" fxFlexAlign="center">
+  <div class="mat-subheading-1 title-margin" fxFlexAlign="center">
     You've not created an application yet or have done it more than 2 hours ago.
   </div>
   <mat-vertical-stepper linear (selectionChange)="selectionChange($event)">
@@ -64,14 +64,26 @@
       </div>
     </mat-step>
     <mat-step label="Choose Tags">
-      <app-input-tags (tagsChanged)="tagsChanged($event)"></app-input-tags>
+      <div fxLayout="row">
+        <div fxFlex="nogrow">
+          <div class="step-wrapper">
+            <app-input-tags (tagsChanged)="tagsChanged($event)"></app-input-tags>
+          </div>
+        </div>
+      </div>
       <div class="stepper-buttons" fxLayoutGap="10px">
         <button mat-raised-button color="warn" matStepperPrevious>Back</button>
         <button mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Publish">
-      <app-application [application]="application"></app-application>
+      <div fxLayout="row">
+        <div fxFlex="nogrow">
+          <div class="step-wrapper">
+            <app-application [application]="application"></app-application>
+          </div>
+        </div>
+      </div>
       <div class="stepper-buttons" fxLayoutGap="10px">
         <button mat-raised-button color="warn" matStepperPrevious>Back</button>
         <button mat-raised-button color="primary" (click)="publish()">Publish</button>

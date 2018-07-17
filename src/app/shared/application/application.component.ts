@@ -35,7 +35,11 @@ export class ApplicationComponent implements OnInit {
   }
 
   createdProposal(proposal: Proposal) {
-    this.proposal = proposal;
+    if (!proposal) {
+      this.closeProposalDialog();
+    } else {
+      this.proposal = proposal;
+    }
   }
 
   changePlayerState(playerState: PlayerState) {
