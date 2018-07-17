@@ -3,7 +3,7 @@
     *ngSwitchCase="State.NotStarted"
     fxLayout="row"
   >
-    <button fxFlexFill mat-raised-button (click)="startRecording()">
+    <button fxFlexFill color="accent" mat-raised-button (click)="startRecording()">
       <mat-icon>mic</mat-icon>
       Click To Record the Voice
     </button>
@@ -27,7 +27,14 @@
         </div>
       </div>
       
-      <button fxFlexFill mat-raised-button color="primary" (click)="finishRecording()">Stop Recording</button>
+      <button
+        fxFlexFill
+        mat-raised-button
+        color="accent"
+        (click)="finishRecording()"
+        >
+          Stop Recording
+        </button>
     </div>
   </ng-container>
   
@@ -36,7 +43,7 @@
       <div fxFlexFill>
         <app-player [showTimeline]="true"></app-player>
       </div>
-      <button fxFlexFill mat-raised-button (click)="startRecording()">
+      <button fxFlexFill color="accent" mat-raised-button (click)="startRecording()">
         Rerecord Message
       </button>
     </div>

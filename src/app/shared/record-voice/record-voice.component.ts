@@ -43,6 +43,7 @@ export class RecordVoiceComponent implements OnInit {
       start => {
         if (start) {
           this.state = this.State.Started;
+          this.recordedVoice.emit(undefined);
           this.subscribeToTimer();
         }
       }
