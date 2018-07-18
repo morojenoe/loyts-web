@@ -3,7 +3,6 @@
     <mat-chip-list #chipList>
       <mat-chip
         *ngFor="let tag of tags"
-        [selectable]="selectable"
         removable
         (removed)="remove(tag)"
       >
@@ -13,12 +12,11 @@
       <input
         #input
         matInput
-        [disabled]="tags.length >= 5"
+        [readonly]="tags.length >= 5"
         placeholder="Tags"
         [maxLength]="maxTagLength"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="addOnBlur"
         (matChipInputTokenEnd)="add($event)"
       />
     </mat-chip-list>

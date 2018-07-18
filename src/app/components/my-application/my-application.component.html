@@ -1,3 +1,7 @@
 <ng-container *ngIf="application">
-  <app-application [application]="application"></app-application>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex.xs="96vw">
+      <app-application [application]="application"></app-application>
+    </div>
+  </div>
 </ng-container>

@@ -36,7 +36,6 @@ export class CreateProposalComponent implements OnInit {
     };
     this.applicationService.addProposal(proposal).subscribe(
       prop => {
-        console.log(prop);
         this.proposalMessage = undefined;
         this.close.emit(prop);
       }
