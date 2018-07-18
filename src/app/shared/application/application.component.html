@@ -75,6 +75,37 @@
       </div>
   
       <ng-container *ngIf="isProposalDialogOpen">
+        <div fxLayout="row" fxLayoutAlign="center" fxShow.xs>
+          <div fxFlex="grow" fxFlexAlign="center">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              fxLayoutGap="5px"
+              matTooltip="Created {{elapsedTime()}} ago"
+            >
+              <div class="mat-caption">
+                {{elapsedTime()}}
+              </div>
+              <mat-icon>timelapse</mat-icon>
+            </div>
+          </div>
+          <div fxFlex="nogrow">
+            <mat-divider fxFlexFill [inset]="true" [vertical]="true"></mat-divider>
+          </div>
+          <div fxFlex="grow" fxFlexAlign="center">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="center"
+              fxLayoutGap="5px"
+              matTooltip="{{numberOfProposals(application.countProposals)}} people created proposal for this application"
+            >
+              <div class="mat-body-2">
+                {{numberOfProposals(application.countProposals)}}
+              </div>
+              <mat-icon>face</mat-icon>
+            </div>
+          </div>
+        </div>
         <mat-divider [inset]="true"></mat-divider>
         <ng-container *ngIf="!proposal">
           <app-create-proposal
