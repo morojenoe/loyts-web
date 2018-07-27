@@ -1,0 +1,59 @@
+<div fxLayout="column" fxLayoutAlign="center" class="form-margin">
+  <div class="mat-title" fxFlexAlign="center">Create an Account</div>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column">
+      <mat-form-field
+        fxFlexFill
+        fxFlexAlign="center"
+      >
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="emailFormControl"
+          [errorStateMatcher]="matcher"
+        >
+      </mat-form-field>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="25px"
+        formGroupName="passwordsGroup"
+      >
+        <mat-form-field
+          fxFlex="grow"
+          hintLabel="Minimum 6 symbols"
+        >
+          <input
+            #pass
+            matInput
+            maxLength="50"
+            type="password"
+            placeholder="Password"
+            formControlName="passwordFormControl"
+          >
+        </mat-form-field>
+        <mat-form-field
+          fxFlex="grow"
+          hintLabel="Passwords identical"
+        >
+          <mat-error>Passwords don't match</mat-error>
+          <input
+            matInput
+            maxLength="50"
+            type="password"
+            placeholder="Password again"
+            formControlName="passwordAgainFormControl"
+          >
+        </mat-form-field>
+      </div>
+      <button
+        mat-raised-button
+        fxFlexOffset="20px"
+        type="submit"
+      >
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>

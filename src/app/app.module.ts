@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -26,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,12 +40,12 @@ import { InputTagsComponent } from './shared/input-tags/input-tags.component';
 import { InputLanguageComponent } from './shared/input-language/input-language.component';
 import { PlayerComponent } from './shared/player/player.component';
 import { ApplicationComponent } from './shared/application/application.component';
-
-
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { CreateProposalComponent } from './shared/create-proposal/create-proposal.component';
 import { ProposalComponent } from './shared/proposal/proposal.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { ProposalComponent } from './shared/proposal/proposal.component';
     ApplicationComponent,
     CreateProposalComponent,
     ProposalComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +87,8 @@ import { ProposalComponent } from './shared/proposal/proposal.component';
     MatListModule,
     MatCardModule,
     MatTooltipModule,
+    ReactiveFormsModule,
+    MatMenuModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

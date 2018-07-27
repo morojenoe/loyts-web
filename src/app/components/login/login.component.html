@@ -1,0 +1,36 @@
+<div fxLayout="column" fxLayoutAlign="center" class="form-margin">
+  <div class="mat-title" fxFlexAlign="center">Login</div>
+  <mat-form-field
+    fxFlexFill
+    fxFlexAlign="center"
+  >
+    <input
+      matInput
+      type="email"
+      placeholder="Email"
+      [formControl]="emailFormControl"
+      [errorStateMatcher]="matcher"
+    >
+  </mat-form-field>
+  <mat-form-field
+    fxFlexFill
+    fxFlexAlign="center"
+    hintLabel="Minimum 6 symbols"
+  >
+    <input
+      matInput
+      maxLength="50"
+      type="password"
+      placeholder="Password"
+      [formControl]="passwordFormControl"
+      [errorStateMatcher]="matcher"
+    >
+  </mat-form-field>
+  <button
+    mat-raised-button
+    fxFlexOffset="20px"
+    [disabled]="!(emailFormControl.valid && passwordFormControl.valid)"
+  >
+    Login
+  </button>
+</div>
