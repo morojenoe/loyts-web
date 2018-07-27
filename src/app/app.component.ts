@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 
 class Navigation {
@@ -17,5 +18,10 @@ export class AppComponent {
     { title: 'Application', routerLink: '/application' },
     { title: 'Chat Room', routerLink: '/chat-room' },
   ];
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  logout() {
+    this.authService.signOut();
+    this.router.navigate(['/login']);
+  }
 }

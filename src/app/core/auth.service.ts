@@ -8,36 +8,33 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  user: auth.UserCredential;
+  user: firebase.User;
 
-  constructor(public afAuth: AngularFireAuth, private router:Router) { }
+  constructor(public afAuth: AngularFireAuth, private router:Router) {
+    this.afAuth.user.subscribe(user => this.user = user);
+  }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new auth.EmailAuthProvider())
-      .then(user => this.user = user)
-      .catch(error => console.log(error));
+  signInWithEmail(email: string, password: string): Observable<FirebaseError> {
+    return from<FirebaseError>(
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then(() => null)
+        .catch(error => error)
+    );
   }
 
   isLoggedIn(): boolean {
-    console.log(this.user);
     return Boolean(this.user);
   }
 
   signUpWithEmail(email: string, password: string): Observable<FirebaseError> {
     return from<FirebaseError>(
-      this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
-        user => {
-          this.user = user;
-          console.log(this.user);
-          return null;
-        }
-      ).catch(
-        error => error
-      )
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(() => null)
+        .catch(error => error)
     );
   }
 
-  logout() {
+  signOut() {
     this.afAuth.auth.signOut();
   }
 }

@@ -1,36 +1,41 @@
 <div fxLayout="column" fxLayoutAlign="center" class="form-margin">
   <div class="mat-title" fxFlexAlign="center">Login</div>
-  <mat-form-field
-    fxFlexFill
-    fxFlexAlign="center"
-  >
-    <input
-      matInput
-      type="email"
-      placeholder="Email"
-      [formControl]="emailFormControl"
-      [errorStateMatcher]="matcher"
-    >
-  </mat-form-field>
-  <mat-form-field
-    fxFlexFill
-    fxFlexAlign="center"
-    hintLabel="Minimum 6 symbols"
-  >
-    <input
-      matInput
-      maxLength="50"
-      type="password"
-      placeholder="Password"
-      [formControl]="passwordFormControl"
-      [errorStateMatcher]="matcher"
-    >
-  </mat-form-field>
-  <button
-    mat-raised-button
-    fxFlexOffset="20px"
-    [disabled]="!(emailFormControl.valid && passwordFormControl.valid)"
-  >
-    Login
-  </button>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column">
+      <mat-form-field
+        fxFlexFill
+        fxFlexAlign="center"
+      >
+        <mat-error>{{emailErrorMessage}}</mat-error>
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="emailFormControl"
+        >
+      </mat-form-field>
+      <mat-form-field
+        fxFlexFill
+        fxFlexAlign="center"
+        hintLabel="Minimum 6 symbols"
+      >
+        <mat-error>{{passwordErrorMessage}}</mat-error>
+        <input
+          matInput
+          maxLength="50"
+          type="password"
+          placeholder="Password"
+          formControlName="passwordFormControl"
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        type="submit"
+        fxFlexOffset="20px"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+    </div>
+  </form>
 </div>
