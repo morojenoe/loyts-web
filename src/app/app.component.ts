@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './core/auth.service';
 
 class Navigation {
   title: string;
@@ -16,5 +17,5 @@ export class AppComponent {
     { title: 'Application', routerLink: '/application' },
     { title: 'Chat Room', routerLink: '/chat-room' },
   ];
-  constructor() { }
+  constructor(private authService: AuthService) { }
 }

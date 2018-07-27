@@ -4,7 +4,7 @@
     mat-icon-button
     [matMenuTriggerFor]="menu"
   >
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon [color]="authService.isLoggedIn()? 'primary' : null">account_circle</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">

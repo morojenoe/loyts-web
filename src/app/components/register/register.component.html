@@ -6,12 +6,12 @@
         fxFlexFill
         fxFlexAlign="center"
       >
+        <mat-error>{{emailError}}</mat-error>
         <input
           matInput
           type="email"
           placeholder="Email"
           formControlName="emailFormControl"
-          [errorStateMatcher]="matcher"
         >
       </mat-form-field>
       <div
@@ -24,6 +24,7 @@
           fxFlex="grow"
           hintLabel="Minimum 6 symbols"
         >
+          <mat-error>{{passwordError}}</mat-error>
           <input
             #pass
             matInput
@@ -51,6 +52,7 @@
         mat-raised-button
         fxFlexOffset="20px"
         type="submit"
+        [disabled]="registrationForm.invalid"
       >
         Sign Up
       </button>
